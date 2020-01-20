@@ -33,9 +33,6 @@
         $("body").blur(function(){
             $(".auto_complete_box").hide();
         });
-    });
-
-
 </script>
 <?php else: ?>
     <div class="row">
