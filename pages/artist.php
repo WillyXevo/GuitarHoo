@@ -123,6 +123,7 @@
 
 <script type="text/javascript">
     var height = (this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height;
+    var trans_chord = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     $(document).ready(function(){
 			
 		$("#fz-max").click(function(){
@@ -138,11 +139,46 @@
 		});
 
 		$("#tr-max").click(function(){
-			show_toast("comming soon!");
+			$(".showTip").each(function(i){
+				var ke = $(this).attr("class").split(" ");
+				var k = ke[1];
+				var ext = '';
+				if(ke[1].indexOf("m")>-1){
+					ext += 'm';
+					k = ke[1].split("m");
+					ext += k[1];
+				}else if(ke[1].indexOf("Maj")>-1){
+					ext += 'Maj';
+					k = ke[1].split("Maj");
+					ext += k[1];
+				}
+				var transpose = transpose_plus(k[0])+ext;
+				$(this).removeClass(ke[1]);
+				$(this).addClass(transpose);
+				$(this).html(transpose);
+			});
+			
 		});
 
 		$("#tr-min").click(function(){
-			show_toast("comming soon!");
+			$(".showTip").each(function(i){
+				var ke = $(this).attr("class").split(" ");
+				var k = ke[1];
+				var ext = '';
+				if(ke[1].indexOf("m")>-1){
+					ext += 'm';
+					k = ke[1].split("m");
+					ext += k[1];
+				}else if(ke[1].indexOf("Maj")>-1){
+					ext += 'Maj';
+					k = ke[1].split("Maj");
+					ext += k[1];
+				}
+				var transpose = transpose_min(k[0])+ext;
+				$(this).removeClass(ke[1]);
+				$(this).addClass(transpose);
+				$(this).html(transpose);
+			});
 		});
 
     	$(window).scroll(function(){
@@ -155,6 +191,38 @@
     		}
     	});
     });
+
+	function transpose_plus(key){
+		var trans = 0;
+		
+		for(var i = 0; i < trans_chord.length; i++){
+			if(key == trans_chord[i]){
+				console.log(i);
+				trans = i;
+				trans++;
+				if(trans>=trans_chord.length){
+					trans=0;
+				}
+			}
+		}
+		return trans_chord[trans];
+	}
+
+	function transpose_min(key){
+		var trans = 0;
+		
+		for(var i = 0; i < trans_chord.length; i++){
+			if(key == trans_chord[i]){
+				console.log(i);
+				trans = i;
+				trans--;
+				if(trans<=0){
+					trans=trans_chord.length-1;
+				}
+			}
+		}
+		return trans_chord[trans];
+	}
 </script>
 
 

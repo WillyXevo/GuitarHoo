@@ -62,7 +62,7 @@ require('koneksi.php');
 
 
 	
-	<div class="container-fluid body-main">
+	<div class="container-fluid body-main" id="body-main">
 		<?php
 			$d = "pages";
 			$file = scandir("$d");
@@ -117,6 +117,25 @@ require('koneksi.php');
 		    	$(".toast").hide();
 		    }, 3000);
 	    }
+
+	    $(function() {
+	    	$(window).bind("load resize", function() {
+	            var height = (this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height;
+	            var hcont = height - ($(".navbar-main").height() + $("footer").height() + 23);
+	            //console.log(hcont);
+	            $("#body-main").css("min-height", hcont+"px");
+	            /*
+	            var height = (this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height;
+	            var hcont = $(".navbar-main").height() + $(".body-main").height() + $("footer").height() + 20;
+	            var mt = height-hcont;
+	            console.log(height);
+	    		console.log(hcont);
+	    		console.log(mt);
+
+	    		$("footer").css("margin-top", mt+"px");*/
+
+	    	});
+    	});
 	</script>
 </body>
 </html>

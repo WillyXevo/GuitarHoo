@@ -7,4 +7,4 @@ comes as a form of contribution to the music world by presenting basic guitar ch
 ## features : 
 - List of artist
 - List of song
-
+- transpose
