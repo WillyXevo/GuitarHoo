@@ -144,15 +144,13 @@
 				var k = ke[1];
 				var ext = '';
 				if(ke[1].indexOf("m")>-1){
-					ext += 'm';
-					k = ke[1].split("m");
-					ext += k[1];
+					k = ke[1].split("m")[0];
+					ext += 'm'+ke[1].split("m")[1];
 				}else if(ke[1].indexOf("Maj")>-1){
-					ext += 'Maj';
-					k = ke[1].split("Maj");
-					ext += k[1];
+					k = ke[1].split("Maj")[0];
+					ext += 'Maj'+ke[1].split("m")[1];
 				}
-				var transpose = transpose_plus(k[0])+ext;
+				var transpose = transpose_plus(k)+ext;
 				$(this).removeClass(ke[1]);
 				$(this).addClass(transpose);
 				$(this).html(transpose);
@@ -166,15 +164,13 @@
 				var k = ke[1];
 				var ext = '';
 				if(ke[1].indexOf("m")>-1){
-					ext += 'm';
-					k = ke[1].split("m");
-					ext += k[1];
+					k = ke[1].split("m")[0];
+					ext += 'm'+ke[1].split("m")[1];
 				}else if(ke[1].indexOf("Maj")>-1){
-					ext += 'Maj';
-					k = ke[1].split("Maj");
-					ext += k[1];
+					k = ke[1].split("Maj")[0];
+					ext += 'Maj'+ke[1].split("m")[1];
 				}
-				var transpose = transpose_min(k[0])+ext;
+				var transpose = transpose_min(k)+ext;
 				$(this).removeClass(ke[1]);
 				$(this).addClass(transpose);
 				$(this).html(transpose);
@@ -197,7 +193,6 @@
 		
 		for(var i = 0; i < trans_chord.length; i++){
 			if(key == trans_chord[i]){
-				console.log(i);
 				trans = i;
 				trans++;
 				if(trans>=trans_chord.length){
@@ -213,7 +208,6 @@
 		
 		for(var i = 0; i < trans_chord.length; i++){
 			if(key == trans_chord[i]){
-				console.log(i);
 				trans = i;
 				trans--;
 				if(trans<=0){
