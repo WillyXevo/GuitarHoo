@@ -1,6 +1,6 @@
 <?php
 
-require('curl/simplehtmldom/simple_html_dom.php');
+//require('curl/simplehtmldom/simple_html_dom.php');
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: x-access-header, Authorization, Origin, X-Requested-With, Content-Type, Accept");
