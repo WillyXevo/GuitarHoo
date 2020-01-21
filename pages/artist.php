@@ -106,6 +106,13 @@
 ?>
 <div class="row" id="isi-chord">
 	<div class="col-xs-12">
+		<?php
+			$user = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+			$ids = $row_lagu['id_song'];
+			$da = date("Y-m-d H:i:s");
+			$sql = "INSERT INTO tblhistory (user, id_song, date_access) VALUES ('$user', $ids, '$da')";
+			$db->exec($sql);
+		?>
 		<h3>CHORD <?= strtoupper($row_lagu['judul_lagu']); ?></h3>
 		<br>
 		<?= html_entity_decode($row_lagu['isi_lagu']); ?>

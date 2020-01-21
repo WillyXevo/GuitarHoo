@@ -3,9 +3,13 @@
     src: url(../fonts/one_piece_font.ttf);
 }
 
-body{
+html {
+  scroll-behavior: smooth;
 }
 
+
+body{
+}
 .header-main{
 	padding: 25px 70px;
 	text-align: center;
