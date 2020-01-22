@@ -76,15 +76,11 @@
 	<div class="col-xs-12 panel-head">
 		<p>CHORDS FROM '<strong><?= $band; ?></strong>' </p>
 	</div>
-
 	<div class="col-xs-12 hasil_cari_list">
 		<ul>
 			<?php
 				$sql = "SELECT * FROM tblsong WHERE nama_artist = '$band'";
-
-
 				$res = $db->query($sql);
-
 				while ($row = $res->fetchArray()):
 			?>
 			<a href="index.php?p=artist&tag=<?= $tag; ?>&band=<?= base64_url_encode($band); ?>&lagu=<?= $row['id_song']; ?>">
@@ -107,11 +103,11 @@
 <div class="row" id="isi-chord">
 	<div class="col-xs-12">
 		<?php
-			$user = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+			/*$user = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 			$ids = $row_lagu['id_song'];
 			$da = date("Y-m-d H:i:s");
 			$sql = "INSERT INTO tblhistory (user, id_song, date_access) VALUES ('$user', $ids, '$da')";
-			$db->exec($sql);
+			$db->exec($sql);*/
 		?>
 		<h3>CHORD <?= strtoupper($row_lagu['judul_lagu']); ?></h3>
 		<br>
@@ -150,13 +146,29 @@
 				var ke = $(this).attr("class").split(" ");
 				var k = ke[1];
 				var ext = '';
-				if(ke[1].indexOf("m")>-1){
+
+				if(k[1]!="#"){
+					k = k[0];
+					ext = ke[1].replace(k, "");
+				}else{
+					k = k[0]+k[1];
+					ext = ke[1].replace(k, "");
+				}
+
+				/*if(ke[1].indexOf("m")>-1){
 					k = ke[1].split("m")[0];
 					ext += 'm'+ke[1].split("m")[1];
 				}else if(ke[1].indexOf("Maj")>-1){
 					k = ke[1].split("Maj")[0];
 					ext += 'Maj'+ke[1].split("m")[1];
-				}
+				}else if(k[1]=='7' || k[1]=='9' || k[1]=='11' || k[1]=='13'){
+					ext = k[1];
+					k = k[0];
+				}else if(k[2]=='7' || k[2]=='9' || k[2]=='11' || k[2]=='13'){
+					ext = k[2];
+					k = k[0]+k[1];
+				}*/
+
 				var transpose = transpose_plus(k)+ext;
 				$(this).removeClass(ke[1]);
 				$(this).addClass(transpose);
@@ -170,12 +182,12 @@
 				var ke = $(this).attr("class").split(" ");
 				var k = ke[1];
 				var ext = '';
-				if(ke[1].indexOf("m")>-1){
-					k = ke[1].split("m")[0];
-					ext += 'm'+ke[1].split("m")[1];
-				}else if(ke[1].indexOf("Maj")>-1){
-					k = ke[1].split("Maj")[0];
-					ext += 'Maj'+ke[1].split("m")[1];
+				if(k[1]!="#"){
+					k = k[0];
+					ext = ke[1].replace(k, "");
+				}else{
+					k = k[0]+k[1];
+					ext = ke[1].replace(k, "");
 				}
 				var transpose = transpose_min(k)+ext;
 				$(this).removeClass(ke[1]);
