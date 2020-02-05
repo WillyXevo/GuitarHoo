@@ -1,3 +1,14 @@
+
+
+<pre>
+init session <br>
+<?php
+	session_start();
+	$_SESSION['tes'] = 'ini session';
+	echo isset($_SESSION['tes'])?$_SESSION['tes']:'gak ada session';
+?>
+</pre>
+
 <table class="table">
 	<thead>
 		<tr>
